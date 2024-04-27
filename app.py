@@ -1,12 +1,16 @@
 # import flask
 from flask import Flask, render_template
+# import flaskIO
+from flask_socketio import SocketIO
 # import package to read csv and iterator tools
 import csv
 import itertools
 import os
 
+async_mode = None
 app = Flask(__name__)
-# route = localhost
+socket_=SocketIO(app, async_mode=async_mode)
+
 
 def get_data():
     # Get the directory of the current script
@@ -54,7 +58,7 @@ def bubble_sort(array):
             break
     return array
 
-
+# route = localhost
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -81,8 +85,11 @@ def report():
 
 @app.route('/socket')
 def socket():
-    return render_template("socket.html")
+    return render_template("socket.html", sync_mode=socket_.async_mode)
 
 @app.route('/creative')
 def creative():
     return render_template("creative.html")
+
+if __name__ == '__main__':
+    socket_.run(app, debug=True)
