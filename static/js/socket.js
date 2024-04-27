@@ -1,5 +1,5 @@
 // Connect to WebSocket server
-const socket = io();
+const socket = io('https://mbenson-assignment3');
 
 // Handle form submission for emitting messages
 $('#emit').submit(function(e) {
