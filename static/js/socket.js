@@ -1,27 +1,34 @@
-$(document).ready(function() {
+// Connect to WebSocket server
+const socket = io();
 
-    namespace = '/test';
-    var socket = io(namespace);
+// Handle form submission for emitting messages
+$('#emit').submit(function(e) {
+    e.preventDefault();
+    const message = $('#emit_data').val();
+    socket.emit('emit_message', message);
+    $('#emit_data').val(''); // Clear input field
+});
 
-    socket.on('connect', function() {
-        socket.emit('my_event', {data: 'connected to the SocketServer...'});
-    });
+// Handle form submission for broadcasting messages
+$('#broadcast').submit(function(e) {
+    e.preventDefault();
+    const message = $('#broadcast_data').val();
+    socket.emit('broadcast_message', message);
+    $('#broadcast_data').val(''); // Clear input field
+});
 
-    socket.on('my_response', function(msg, cb) {
-        $('#log').append('<br>' + $('<div/>').text('logs #' + msg.count + ': ' + msg.data).html());
-        if (cb)
-            cb();
-    });
-    $('form#emit').submit(function(event) {
-        socket.emit('my_event', {data: $('#emit_data').val()});
-        return false;
-    });
-    $('form#broadcast').submit(function(event) {
-        socket.emit('my_broadcast_event', {data: $('#broadcast_data').val()});
-        return false;
-    });
-    $('form#disconnect').submit(function(event) {
-        socket.emit('disconnect_request');
-        return false;
-    });
+// Handle form submission for disconnecting from server
+$('#disconnect').submit(function(e) {
+    e.preventDefault();
+    socket.disconnect();
+});
+
+// Handle incoming messages from the server
+socket.on('message', function(data) {
+    $('#log').append($('<p>').text('Received: ' + data));
+});
+
+// Handle disconnect event from the server
+socket.on('disconnect', function() {
+    $('#log').append($('<p>').text('Disconnected from server'));
 });
