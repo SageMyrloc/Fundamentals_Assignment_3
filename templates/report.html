@@ -1,50 +1,65 @@
 <!-- Final Report -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Report</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Navigation Links</h1>
+      <h1>Navigation Links</h1>
     </header>
     <nav>
-        <a href="/creative">Visualisation (Task 1.1)</a>
-        <a href="/socket">Web Socket (Task 1.2)</a>
-        <a href="/report">Report (Task 1,3)</a>
+      <a href="/creative">Visualisation (Task 1.1)</a>
+      <a href="/socket">Web Socket (Task 1.2)</a>
+      <a href="/report">Report (Task 1,3)</a>
     </nav>
     <div class="report">
-        <h1>
-            CSC40088 Fundamentals of Computer Science: Task 2
-        </h1>
-        <h3>Question 2.1: What extra features have you added in Task 1.1, and why? </h3>
-        <p>
-            Your answers.
-        </p>
-        <hr>
-        <h3>Question 2.2: What are the security issues of Web Socket, and what can be done to secure Web Socket? You need to relate this to the security features you have implemented in Task 1.2.</h3>
-        <p>
-            Your answers.
-        </p>
-        <hr>
-        <h3>Question 2.3: What are the things you found particularly challenging in completing Task 1, and how can you improve your approach to these tasks?</h3>
-        <p> 
-			Your answers.
-		</p>
-        <hr>
-        
-        <h5>Note: You can also provide your answers in bullet points</h5>
-        <ul>
-            <li>Your answers...</li>
-			<li>Your answers...</li>
-			<li>Your answers...</li>
-        </ul>
-    </div>
-</body>
+      <h1>CSC40088 Fundamentals of Computer Science: Task 2</h1>
+      <h3>Question 2.1: What extra features have you added in Task 1.1, and why?</h3>
+      <p>Your answers.</p>
+      <hr />
+      <h3>Question 2.2: What are the security issues of Web Socket, and what can be done to secure Web Socket? You need to relate this to the security features you have implemented in Task 1.2.</h3>
+      <p>There are plenty of security issues with sockets that are not properly implemented, some of these, according to Lee (2024)include:</p>
+      <ol>
+        <li><b>Unauthorised access to the socket connection</b> - &#34 A big flaw of WebSocket protocols is that they don&#39t handle authorization/authentication.&#34 (Kovacic 2021)</li>
+        <li><b>DOS &#38 DDOS attacks</b> - &#34 Denial of Service (DoS) attack exploits vulnerabilities in your WebSocket implementation to crash the WebSocket server, making it inaccessible for your genuine users. &#34 (Booker 2023)</li>
+        <li><b>Tunneling</b> - This is a method of transporting data by encapsulating packets within othyer packets. However allowing tunneling leads to potential security breaches through cross-site scripting attacks</li>
+        <li><b>Sniffing Attacks</b> - When data is transfered using sockets it is done so in an unencrypted manner by default (Similar to how HTTP works). However this is subject to attacks such as Man-in-the-middle attacks which can 
+        steal data being passed between client and server.</li>
+        <li><b>Data Masking</b> - Lee (2024) tells that websockets uses data masking to avoid problems such as contaminated browser cache. However, this can be a problem because it can prevent monitoring programmes deteching iteraction 
+        patterns and technology to prevent data loss does not even recognise websockets and are unable to monitor their flow.</li>
+        <li><b>Vulnerability to Input Data Attacks</b> - &#34take place when an attacker purposefully enters information into a system or application with the intentions to break the system's 
+            functionality.&#32 (Fitzgibbons 2019) This type of attack can also be used for instance as SQL injection attacks to subvert a database and gain access to sensitive information.</li>
+        <li><b>No Authentication During the Handshake Process</b> - The websocket protocol does not allow end--user authentication during the handhake process. Only typical HTTP methods are accessible.
+        Because of this &#34HTTP can send validation data directly to the WS.&#34 (Lee 2024). This can benefit attackers using methods such as cross-site websocket Abducting. This is where a malicious user creates a website 
+        on their own domain that creates a connection to the WS connection that allows two-way interaction with the application.</li>
+        <li><b>Unencrupted TCP Channels</b> - Websockets by default are unencrypted, which can lead to issues. (see point 4).</li>
+      </ol>
+
+      <h4>Some of the solutions to these types of attacks can include</h4>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <hr />
+      <h3>Question 2.3: What are the things you found particularly challenging in completing Task 1, and how can you improve your approach to these tasks?</h3>
+      <p>Your answers.</p>
+      <hr />
+
+      <h3>Reference List</h3>
+        <p>Booker, A. (2021) <em>Websocket security: How to prevent 9 common vulnerabilities</em>, Ably Realtime. Available at: https://ably.com/topic/websocket-security (Accessed: 27 April 2024). </p>
+        <p>Kovacic, D. (2021) <em>Websocket security: Top 8 vulnerabilities and how to solve them</em>, Bright. Available at: https://brightsec.com/blog/websocket-security-top-vulnerabilities/#most-common-vulnerabilities (Accessed: 26 April 2024). </p>
+        <p>Lee, I. (2024) <em>WebSocket security - how to protect yourself?</em>, Wallarm. Available at: https://www.wallarm.com/what/websocket-security (Accessed: 26 April 2024).</p>
+  </body>
 </html>
- 
- 
