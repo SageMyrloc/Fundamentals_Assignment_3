@@ -11,7 +11,7 @@ from threading import Lock
 async_mode = None
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socket_ = SocketIO(app, async_mode=async_mode, cors_allowed_origins="https://mbenson-assignment3-3f7eb99f42fc.herokuapp.com")
+socket_ = SocketIO(app, async_mode=async_mode)
 thread = None
 thread_lock = Lock()
 
