@@ -5,7 +5,7 @@ const socket = io();
 $('#emit').submit(function(e) {
     e.preventDefault();
     const message = $('#emit_data').val();
-    socket.emit('emit_message', message);
+    socket.emit('my_event', { data: message });
     $('#emit_data').val(''); // Clear input field
 });
 
@@ -13,19 +13,19 @@ $('#emit').submit(function(e) {
 $('#broadcast').submit(function(e) {
     e.preventDefault();
     const message = $('#broadcast_data').val();
-    socket.emit('broadcast_message', message);
+    socket.emit('my_broadcast_event', { data: message });
     $('#broadcast_data').val(''); // Clear input field
 });
 
 // Handle form submission for disconnecting from server
 $('#disconnect').submit(function(e) {
     e.preventDefault();
-    socket.disconnect();
+    socket.emit('disconnect_request');
 });
 
 // Handle incoming messages from the server
-socket.on('message', function(data) {
-    $('#log').append($('<p>').text('Received: ' + data));
+socket.on('my_response', function(data) {
+    $('#log').append($('<p>').text('Received: ' + data.data));
 });
 
 // Handle disconnect event from the server
