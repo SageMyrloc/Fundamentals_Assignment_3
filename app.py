@@ -10,7 +10,8 @@ from threading import Lock
 
 async_mode = None
 app = Flask(__name__)
-socketio = SocketIO(app, async_mode=async_mode)
+app.config['SECRET_KEY'] = 'secret!'
+socket_ = SocketIO(app, async_mode=async_mode)
 thread = None
 thread_lock = Lock()
 
@@ -94,18 +95,18 @@ def creative():
 
 @app.route('/socket')
 def socket():
-    return render_template("socket.html", async_mode=socketio.async_mode)
+    return render_template("socket.html", async_mode=socket_.async_mode)
 
 # socket implementation below
 
-@socketio.on('my_event')
+@socket_.on('my_event', namespace='/test')
 def test_message(message):
     session['receive_count'] = session.get('receive_count', 0) + 1
     emit('my_response',
          {'data': message['data'], 'count': session['receive_count']})
 
 
-@socketio.on('my_broadcast_event')
+@socket_.on('my_broadcast_event', namespace='/test')
 def test_broadcast_message(message):
     session['receive_count'] = session.get('receive_count', 0) + 1
     emit('my_response',
@@ -113,7 +114,7 @@ def test_broadcast_message(message):
          broadcast=True)
 
 
-@socketio.on('disconnect_request')
+@socket_.on('disconnect_request', namespace='/test')
 def disconnect_request():
     @copy_current_request_context
     def can_disconnect():
@@ -126,4 +127,4 @@ def disconnect_request():
 
 # start in debugging mode
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socket_.run(app, debug=True)
