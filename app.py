@@ -4,7 +4,6 @@ from flask import Flask, render_template, session, copy_current_request_context
 from flask_socketio import SocketIO, emit, disconnect
 # import package to read csv and iterator tools
 import csv
-import itertools
 import os
 from threading import Lock
 
@@ -67,22 +66,6 @@ def bubble_sort(array):
 @app.route('/')
 def index():
     return render_template("index.html")
-
-
-# route = localhost/basic
-@app.route('/basic')
-def basic():
-    tweet_data = get_data()
-    # sort the data using the bubble sort above
-    bubble_sort(tweet_data)
-    # limit the amount of data returned.
-    return_data = itertools.islice(tweet_data, 40)
-    # render the file using the template of basic.html.
-    return render_template("basic.html", tweetData=return_data)
-
-@app.route('/advanced')
-def advanced():
-    return render_template("advanced.html")
 
 @app.route('/report')
 def report():

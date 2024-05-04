@@ -20,7 +20,7 @@ var svg = d3
 // Parse the date
 d3.csv("/static/data/Kaggle_TwitterUSAirlineSentiment.csv", function (error, data) {
   if (error) throw error;
-
+  
   // X axis
   var x = d3
     .scaleBand()
@@ -135,7 +135,5 @@ legendKeys.forEach(function (key, i) {
     .attr("dy", ".35em")
     .text(key.charAt(0).toUpperCase() + key.slice(1)); // Display formatted key text
 });
-
-
 
 });
