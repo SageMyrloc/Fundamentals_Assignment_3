@@ -1,7 +1,7 @@
 // get bracket dimmensions
 var container = document.getElementById("my_dataviz");
 var containerWidth = container.clientWidth;
-var containerHeight = containerWidth/2;
+var containerHeight = containerWidth / 2;
 
 // Set up dimensions
 var margin = { top: 20, right: 20, bottom: 30, left: 40 },
@@ -20,7 +20,7 @@ var svg = d3
 // Parse the date
 d3.csv("/static/data/Kaggle_TwitterUSAirlineSentiment.csv", function (error, data) {
   if (error) throw error;
-  
+
   // X axis
   var x = d3
     .scaleBand()
@@ -109,31 +109,24 @@ d3.csv("/static/data/Kaggle_TwitterUSAirlineSentiment.csv", function (error, dat
       return y(d[0]) - y(d[1]);
     })
     .attr("width", x.bandwidth());
-    
 
   // Define legend data
-var legendKeys = ["positive", "neutral", "negative"];
+  var legendKeys = ["positive", "neutral", "negative"];
 
-// Add legend
-var legend = svg
-  .append("g")
-  .attr("transform", "translate(" + (width - 100) + "," + (margin.top + 10) + ")");
+  // Add legend
+  var legend = svg.append("g").attr("transform", "translate(" + (width - 100) + "," + (margin.top + 10) + ")");
 
-// Create legend items
-legendKeys.forEach(function (key, i) {
-  var legendItem = legend.append("g")
-    .attr("transform", "translate(0," + (i * 20) + ")");
+  // Create legend items
+  legendKeys.forEach(function (key, i) {
+    var legendItem = legend.append("g").attr("transform", "translate(0," + i * 20 + ")");
 
-  legendItem.append("rect")
-    .attr("width", 18)
-    .attr("height", 18)
-    .attr("fill", color(key)); // Use color scale to assign colors
+    legendItem.append("rect").attr("width", 18).attr("height", 18).attr("fill", color(key)); // Use color scale to assign colors
 
-  legendItem.append("text")
-    .attr("x", 24)
-    .attr("y", 9)
-    .attr("dy", ".35em")
-    .text(key.charAt(0).toUpperCase() + key.slice(1)); // Display formatted key text
-});
-
+    legendItem
+      .append("text")
+      .attr("x", 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .text(key.charAt(0).toUpperCase() + key.slice(1)); // Display formatted key text
+  });
 });
