@@ -4,6 +4,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Report</title>
@@ -17,15 +23,32 @@
       <a href="/socket">Web Socket (Task 1.2)</a>
       <a href="/report">Report (Task 1,3)</a>
     </nav>
-    <div class="report">
+    <div class="report col-10 offset-1">
+    <div>
       <h1>CSC40088 Fundamentals of Computer Science: Task 2</h1>
       <h3>Question 2.1: What extra features have you added in Task 1.1, and why?</h3>
-      <p>Your answers.</p>
+      <p>Changes made to the visualisation of the data include:</p>
+      <ol>
+        <li> Added buttons to allow the switching between two graphs</li>
+        <li> Making changes to the stacked bar chart depicting the number and types of reviews given:
+          <ol type="a">
+            <li> Adding axis labels.</li>
+            <li> Adding a title.</li>
+            <li> Adding a legend depicting what each colour in the bar represents.</li>
+            <li> Added a border around each bar to improve the visuals.</li>
+            <li> Unfortunately I was unable to get the mouse over command to work in time.</li>
+          </ol>
+          <li> Added a second graph to show what the reason was for each negative tweet made.</li>
+          </li>
+        </li>
+      </ol>
+    </div>
       <hr />
+    <div>
       <h3>Question 2.2: What are the security issues of Web Socket, and what can be done to secure Web Socket? You need to relate this to the security features you have implemented in Task 1.2.</h3>
       <p>There are plenty of security issues with sockets that are not properly implemented, some of these, according to Lee (2024)include:</p>
       <ol>
-        <li><b>Unauthorised access to the socket connection</b> - &#34 A big flaw of WebSocket protocols is that they don&#39t handle authorization/authentication.&#34 (Kovacic 2021)</li>
+        <li><b>Unauthorised access to the socket connection</b> - &#34A big flaw of WebSocket protocols is that they don&#39t handle authorization/authentication.&#34 (Kovacic 2021)</li>
         <li><b>DOS &#38 DDOS attacks</b> - &#34 Denial of Service (DoS) attack exploits vulnerabilities in your WebSocket implementation to crash the WebSocket server, making it inaccessible for your genuine users. &#34 (Booker 2023)</li>
         <li><b>Tunneling</b> - This is a method of transporting data by encapsulating packets within othyer packets. However allowing tunneling leads to potential security breaches through cross-site scripting attacks</li>
         <li><b>Sniffing Attacks</b> - When data is transfered using sockets it is done so in an unencrypted manner by default (Similar to how HTTP works). However this is subject to attacks such as Man-in-the-middle attacks which can 
@@ -39,7 +62,6 @@
         on their own domain that creates a connection to the WS connection that allows two-way interaction with the application.</li>
         <li><b>Unencrupted TCP Channels</b> - Websockets by default are unencrypted, which can lead to issues. (see point 4).</li>
       </ol>
-
       <h4>Some of the solutions to these types of attacks can include</h4>
       <ul>
         <li></li>
@@ -51,15 +73,48 @@
         <li></li>
         <li></li>
       </ul>
-
+    </div>
+    <div>
       <hr />
       <h3>Question 2.3: What are the things you found particularly challenging in completing Task 1, and how can you improve your approach to these tasks?</h3>
-      <p>Your answers.</p>
-      <hr />
+      <p> 
+        There was a number of things that were challenging especially since I had not used sockets or d3 before and was pretty amatuer in my knowledge of
+        flask &#40this was the second time I had used it&#41.
+        The most challenging things were:
+      </p>
+      <ul>
+        <li> Visualisation:
+          <ul>
+            <li> 
+              Having to rewrite the visual code because it seemed rather conveluted in the last assignment and I also wanted to try using functions that could be reused in the 
+              functions for creating multiple graphs.
+            </li>
+            <li>
+              Getting the functionality working using multiple functions, In the end I had to look at the order in which functions were called and work out if I could put a break
+              between the functions to stop the code continuing whilst another funtion was running.
+            </li>
+            <li>
+              Getting the svg positioned correctly, and then having to offset the graph components to ensure they worked in the right places.
+              However, this one challenge enabled me to look further into the code for the d3 graphs giving me a better understanding of how it all worked.
+            </li>
+          </ul>
+        </li>
+        <li> Sockets:
+          <ul>
+            <li>
 
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+    </div>
+    <div>
       <h3>Reference List</h3>
         <p>Booker, A. (2021) <em>Websocket security: How to prevent 9 common vulnerabilities</em>, Ably Realtime. Available at: https://ably.com/topic/websocket-security (Accessed: 27 April 2024). </p>
         <p>Kovacic, D. (2021) <em>Websocket security: Top 8 vulnerabilities and how to solve them</em>, Bright. Available at: https://brightsec.com/blog/websocket-security-top-vulnerabilities/#most-common-vulnerabilities (Accessed: 26 April 2024). </p>
         <p>Lee, I. (2024) <em>WebSocket security - how to protect yourself?</em>, Wallarm. Available at: https://www.wallarm.com/what/websocket-security (Accessed: 26 April 2024).</p>
+      </div>
+      </div>
   </body>
 </html>
