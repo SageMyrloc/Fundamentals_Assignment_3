@@ -41,7 +41,7 @@ $(document).ready(function () {
   // Handle form submission to broadcast with rate limiting
   $("form#broadcast").submit(function (event) {
     var broadcastData = $("#broadcast_data").val();
-    emitWithRateLimit("my_broadcast_event" broadcastData);
+    emitWithRateLimit("my_broadcast_event", broadcastData);
     return false;
   });
 
