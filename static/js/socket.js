@@ -27,7 +27,7 @@ $(document).ready(function () {
       socket.emit("my_event", { data: data });
       lastEmitTime = now;
     } else {
-      console.log("Rate limit exceeded. Ignoring emit request.");
+      alert("Rate limit exceeded. Ignoring emit request.");
     }
   }
 
