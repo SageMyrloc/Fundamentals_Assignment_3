@@ -3,7 +3,7 @@ $(document).ready(function () {
   var rateLimitInterval = 1000; // Time interval in milliseconds
   var lastEmitTime = 0;
 
-  namespace = "mbenson-assignment3-3f7eb99f42fc.herokuapp.com";
+  namespace = "/test";
   var socket = io(namespace);
 
   socket.on("connect", function () {
