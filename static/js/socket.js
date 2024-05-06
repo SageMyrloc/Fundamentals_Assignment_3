@@ -1,4 +1,8 @@
 $(document).ready(function () {
+  // Define rate limiting parameters
+  var rateLimitInterval = 1000; // Time interval in milliseconds
+  var lastEmitTime = 0;
+
   namespace = "/test";
   var socket = io(namespace);
 
