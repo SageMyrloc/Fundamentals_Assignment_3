@@ -64,14 +64,11 @@
       </ol>
       <h4>Some of the solutions to these types of attacks can include</h4>
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li><b>Enabling CORS:</b> This helps to prevent unauthorised access from other locations other than the ones specified in the application. It helps (but does not stop) unauthorised access</li>
+        <li><b>Adding rate limiting:</b> Rate limiting is simple stopping someone from repeatedly spamming messages into an application. This would happen in a DOS attack and whilst it does help mitigate 
+          some of a DDOS attack since the messages are coming from many locations this can still cause issues if CORS is not enabled</li>
+        <li><b>Restricting Payload size</b></li>
+        <li><b>Encryption of data using SSL over the websockets:</b> This encrypts messages sent between the client and the server similar to how HTTPS does for HTTP.</li>
       </ul>
     </div>
     <div>
@@ -99,12 +96,12 @@
             </li>
           </ul>
         </li>
-        <li> Sockets:
-          <ul>
-            <li>
-
-            </li>
-          </ul>
+        <li> Sockets: I found sockets quite easy to implement when I got to grasp with it and I had no problems enabling CORS or adding in a rate limiting. 
+          My reason for choosing these solutions was simply to:
+          <ol>
+            <li>Reduce the chance to someone accessing the application whilst it was hosted on Heroku.</li>
+            <li>Stop any malicious DOS attack from happening whilst the application was hosted because I didn't want to risk additional costs on Heroku.</li>
+          </ol>
         </li>
       </ul>
       <hr />
