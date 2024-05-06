@@ -21,10 +21,10 @@ $(document).ready(function () {
   });
 
   // Function to emit data with rate limiting
-  function emitWithRateLimit(data) {
+  function emitWithRateLimit(event, data) {
     var now = Date.now();
     if (now - lastEmitTime >= rateLimitInterval) {
-      socket.emit("my_event", { data: data });
+      socket.emit(event, { data: data });
       lastEmitTime = now;
     } else {
       alert("Rate limit exceeded. Ignoring emit request.");
@@ -34,14 +34,14 @@ $(document).ready(function () {
   // Handle form submission with rate-limited emit
   $("form#emit").submit(function (event) {
     var emitData = $("#emit_data").val();
-    emitWithRateLimit(emitData);
+    emitWithRateLimit("my_event", emitData);
     return false;
   });
 
   // Handle form submission to broadcast with rate limiting
   $("form#broadcast").submit(function (event) {
     var broadcastData = $("#broadcast_data").val();
-    emitWithRateLimit(broadcastData);
+    emitWithRateLimit("my_broadcast_event" broadcastData);
     return false;
   });
 
